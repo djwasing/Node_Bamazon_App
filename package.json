@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/djwasing/Node_Bamazon_App#readme",
   "dependencies": {
+    "columnify": "^1.5.4",
     "inquirer": "^6.2.2",
     "mysql": "^2.16.0"
   }
