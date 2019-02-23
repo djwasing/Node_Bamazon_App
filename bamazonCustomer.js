@@ -98,10 +98,32 @@ function howMany(productId) {
                     connection.query(`UPDATE products SET stock_quantity = ${newQuant} WHERE id = ${productId}`, function(err, res) {
                         if (err) throw err;
                         console.log(`Updated the stock of that item to ${newQuant}`);
-                        connection.end();
+                        continueShopping();
                     });
                 }
             })
+        })
+}
+
+function continueShopping() {
+    inquirer
+        .prompt(
+            [
+                {
+                    name: "continue",
+                    message: "Do you want to contniue shopping?",
+                    type: "confirm",
+                }
+            ]
+        ).then(answer => {
+            if (answer.continue === true) {
+                console.log(answer);
+                listAll();
+            }else{
+                console.log(answer);
+                console.log("Thank you for shopping. Come back soon!")
+                connection.end();
+            }
         })
 }
 
