@@ -25,7 +25,6 @@ function listAll() {
         console.log(columnify(res, { columnSplitter: " | " }));
         numberOfItems = res.length;
         console.log("\n");
-        //connection.end();
         selectProduct();
     });
 }
@@ -95,7 +94,6 @@ function howMany(productId) {
                     var newQuant = res[0].stock_quantity - x.quant;
                     connection.query(`UPDATE products SET stock_quantity = ${newQuant} WHERE id = ${productId}`, function(err, res) {
                         if (err) throw err;
-                        //console.log(`Updated the stock of that item to ${newQuant}`);
                         continueShopping();
                     });
                 }
