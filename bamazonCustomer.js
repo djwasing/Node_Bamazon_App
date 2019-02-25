@@ -77,7 +77,7 @@ function howMany(productId) {
                         if (isNaN(value) === false) {
                             return true;
                         }
-                        console.log("The item quantity must be a number. Please try again.");
+                        console.log("  *The item quantity must be a number. Please try again.");
                         return false;
                     }
                 }
@@ -87,7 +87,7 @@ function howMany(productId) {
                 if (err) throw err;
                 if (x.quant > res[0].stock_quantity) {
                     console.log("There is not enough stock for that order. Please try again.");
-                    howMany();
+                    howMany(productId);
                 } else {
                     console.log(`You are ordering ${x.quant} of those items.`);
                     console.log(`The total order price for your ${res[0].product_name}(s) is $${(res[0].price * x.quant).toFixed(2)}. Your order is on the way.`);
