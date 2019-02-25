@@ -87,7 +87,6 @@ function howMany(productId) {
         ).then(x => {
             connection.query(`select stock_quantity, price, product_name from products where id = ${productId}`, function (err, res) {
                 if (err) throw err;
-                //console.log(res);
                 if (x.quant > res[0].stock_quantity) {
                     console.log("There is not enough stock for that order. Please try again.");
                     howMany();
@@ -97,7 +96,7 @@ function howMany(productId) {
                     var newQuant = res[0].stock_quantity - x.quant;
                     connection.query(`UPDATE products SET stock_quantity = ${newQuant} WHERE id = ${productId}`, function(err, res) {
                         if (err) throw err;
-                        console.log(`Updated the stock of that item to ${newQuant}`);
+                        //console.log(`Updated the stock of that item to ${newQuant}`);
                         continueShopping();
                     });
                 }
@@ -117,10 +116,8 @@ function continueShopping() {
             ]
         ).then(answer => {
             if (answer.continue === true) {
-                console.log(answer);
                 listAll();
             }else{
-                console.log(answer);
                 console.log("Thank you for shopping. Come back soon!")
                 connection.end();
             }
