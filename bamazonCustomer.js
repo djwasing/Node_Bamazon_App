@@ -14,8 +14,7 @@ var connection = mysql.createConnection({
 connection.connect(function (err) {
     if (err) throw err;
     console.log("connected as id " + connection.threadId);
-    listAll(); // need to find a better way to show this data so it looks nicer, maybe JSON?
-    //selectProduct();
+    listAll(); 
 });
 
 function listAll() {
